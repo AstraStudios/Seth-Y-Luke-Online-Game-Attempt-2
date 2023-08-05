@@ -6,26 +6,24 @@ using GLSLVectors;
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] GameObject followPoint;
-    [SerializeField] GameObject player;
-    [SerializeField] float camFollowSpeed = 5f;
-    [SerializeField] float playerFollowSpeed = 2f;
+    [SerializeField] float followSpeed = 5f;
+    [SerializeField] float smoothingFactor = 2f;
+
+    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Move the camera
-        Vector3 followVector = F.vec3(followPoint.transform.position.x, transform.position.y, followPoint.transform.position.z-2f);
+        Vector3 followVector = F.vec3(followPoint.transform.position.x, transform.position.y, followPoint.transform.position.z);
 
-        transform.position = Vector3.Lerp(transform.position, followVector.xyz(), camFollowSpeed * Time.deltaTime);
-
-        // Move the follow point
-        Vector3 playerVector = F.vec3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
-        followPoint.transform.position = Vector3.Lerp(followPoint.transform.position, playerVector.xyz(), playerFollowSpeed * Time.deltaTime);
+        //gameObject.transform.Translate(followVector.xz() * followSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, followVector.xyz(), followSpeed * Time.deltaTime);
+        //rb.MovePosition(transform.position + followVector.xyz() * Time.deltaTime * followSpeed);
     }
 }
