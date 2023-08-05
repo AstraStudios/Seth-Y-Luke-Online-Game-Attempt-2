@@ -1,30 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GLSLVectors;
 
 public class MouseLook : MonoBehaviour
 {
-    [SerializeField] float mouseSensitivity = 1000f;
-
-    [SerializeField] Transform playerBody;
-
-    float xRotation = 0f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        // shoot a ray from the mouse twords the plane that the player can move along
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        if (!Physics.Raycast(ray, out hit, 100f, LayerMask.GetMask("MousePositionCheck"))) print("Mouse input could not find hit plane. make sure you have one tagged MousePosiotionCheck");
 
-        playerBody.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
-
+        // face the impact point
+        Vector3 direction = hit.point.xz() - transform.position.xz();
+        float facingAngle = Vector2.SignedAngle(Vector2.right, direction);
+        transform.eulerAngles = new Vector3(0, -facingAngle + 90, 0);
     }
+
 }
