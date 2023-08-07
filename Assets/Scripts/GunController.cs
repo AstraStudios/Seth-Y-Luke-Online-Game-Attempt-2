@@ -36,7 +36,6 @@ public class GunController : MonoBehaviour
 
             if (hit.rigidbody != null)
                 hit.rigidbody.AddForce(-hit.normal * impactForce);
-            
         }
     }
 }
