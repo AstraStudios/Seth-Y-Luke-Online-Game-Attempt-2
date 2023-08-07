@@ -2486,6 +2486,7 @@ GameObject:
   - component: {fileID: 2124077672}
   - component: {fileID: 2124077676}
   - component: {fileID: 2124077675}
+  - component: {fileID: 2124077677}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -2559,3 +2560,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124077671}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2124077677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124077671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceeefc45850db479ba17d8e094929c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 15
+  range: 200
+  fireRate: 5
+  impactForce: 50
+  firePoint: {fileID: 1108645423}
