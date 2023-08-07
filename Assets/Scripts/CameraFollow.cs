@@ -7,8 +7,8 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] GameObject followPoint;
     [SerializeField] GameObject player;
-    [SerializeField] float camFollowSpeed = 5f;
-    [SerializeField] float playerFollowSpeed = 6f;
+    [SerializeField] float camFollowSpeed = 7f;
+    [SerializeField] float playerFollowSpeed = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         // Move the camera
-        Vector3 followVector = F.vec3(followPoint.transform.position.x, transform.position.y, followPoint.transform.position.z - 2f);
+        Vector3 followVector = F.vec3(followPoint.transform.position.x, transform.position.y, followPoint.transform.position.z - 5f);
 
         transform.position = Vector3.Lerp(transform.position, followVector.xyz(), camFollowSpeed * Time.deltaTime);
 
